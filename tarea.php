@@ -1,10 +1,13 @@
 <?php
+// Función que crea tareas
+function crearTarea(string $titulo, int $prioridad = 1, bool $completada = false) : array{
+        return["titulo" => $titulo, "prioridad" => $prioridad, "completada" => $completada];
+}
 
-// Crea arreglo multidimensional de tareas
-$tareas = [["id" => 1, "titulo" => "Estudiar PHP", "estado" => "Completada", "prioridad" => 2],
-	["id" => 2, "titulo" => "Realizar proyecto", "estado" => "Pendiente", "prioridad" => 1],
-	["id" => 3, "titulo" => "Crear repositorio", "estado" => "Pendiente", "prioridad" => 3],
-	["id" => 4, "titulo" => "Leer documentacion", "estado" => "Completada", "prioridad" => 2]];
+$tareas = [[crearTarea("Estudiar PHP", 2)] , [crearTarea("Terminar proyecto")], [crearTarea("Leer documentación", 3, true)]];
+
+var_dump($tareasCreadas);
+
 
 // Agrega texto de prioridad
 foreach ($tareas as &$tarea){
