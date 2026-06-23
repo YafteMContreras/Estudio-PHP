@@ -4,44 +4,43 @@ function crearTarea(string $titulo, int $prioridad = 1, bool $completada = false
         return["titulo" => $titulo, "prioridad" => $prioridad, "completada" => $completada];
 }
 
-$tareas = [[crearTarea("Estudiar PHP", 2)] , [crearTarea("Terminar proyecto")], [crearTarea("Leer documentación", 3, true)]];
+$tareas = [crearTarea("Estudiar PHP", 2), crearTarea("Terminar proyecto"), crearTarea("Leer documentación", 3, true)];
 
-var_dump($tareasCreadas);
+var_dump($tareas);
 
 
-// Agrega texto de prioridad
-foreach ($tareas as &$tarea){
-	$tarea["textoPrioridad"] = match($tarea["prioridad"]){
+// Función para texto de prioridad
+function textoPrioridad(int $prioridad) : string{
+	return match($prioridad){
 		1 => "Alta",
 		2 => "Media",
 		3 => "Baja",
 	};
 }
 
-unset($tarea);
+// Función que imprime tareas
+function imprimeTareas(array $array, string $texto, callable $textoPrioridad) : void {
+	echo "$texto: " . count($array) . "\n";
+	foreach ($array as $tarea){
+		echo "titulo: {$tarea['titulo']}; prioridad: " . $textoPrioridad($tarea['prioridad']) . "\n";
+	}
+}
 
 // Ordena el arreglo por prioridad ascendente
 usort($tareas, fn($a, $b) => $a["prioridad"] <=> $b["prioridad"]);
 //var_dump($tareas);
 
 // Separa la lista en completadas y pendientes
-$completadas = array_filter($tareas, fn($a) => $a["estado"] === "Completada");
+$completadas = array_filter($tareas, fn($a) => $a["completada"] === true);
 $completadas = array_values($completadas);
 var_dump($completadas);
 
-$pendientes = array_filter($tareas, fn($a) => $a["estado"] === "Pendiente");
+$pendientes = array_filter($tareas, fn($a) => $a["completada"] === false);
 $pendientes = array_values($pendientes);
-//var_dump($pendientes);
+var_dump($pendientes);
 
 // Imprime las listas
-echo "Tareas completadas: " . count($completadas) . "\n";
-foreach ($completadas as $tarea){
-	echo "id: {$tarea['id']}; titulo: {$tarea['titulo']}; prioridad: {$tarea['textoPrioridad']}\n";
-}
-
-echo "Tareas pendientes: " . count($pendientes) . "\n";
-foreach ($pendientes as $tarea){
-	echo "id: {$tarea['id']}; titulo: {$tarea['titulo']}; prioridad: {$tarea['textoPrioridad']}\n";
-}
+imprimeTareas($completadas, "Tareas completadas", textoPrioridad(...));
+imprimeTareas($pendientes, "Tareas pendientes", textoPrioridad(...));
 
 ?>
