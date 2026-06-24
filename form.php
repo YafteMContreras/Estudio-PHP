@@ -1,6 +1,7 @@
 <?php
-
-
+// Sanitiza e imprime los datos
+echo htmlspecialchars($_POST['nombre'] ?? '', ENT_QUOTES, 'UTF-8');
+echo (int)htmlspecialchars($_POST['edad'] ?? 1, ENT_QUOTES, 'UTF-8');
 
 ?>
 
