@@ -3,7 +3,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 	// Sanitiza los datos
 	$nombre = htmlspecialchars($_POST['nombre'] ?? '', ENT_QUOTES, 'UTF-8');
-	$edad = (int)htmlspecialchars($_POST['edad'] ?? 0, ENT_QUOTES, 'UTF-8');
+	$edad = (int)($_POST['edad'] ?? 0);
 
 	// Valida los datos
 	if ($nombre === ""){
