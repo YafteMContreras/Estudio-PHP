@@ -39,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 	$tarea_titulo = htmlspecialchars($_POST['titulo'] ?? '', ENT_QUOTES, 'UTF-8');
 	$tarea_prioridad = (int)$_POST['prioridad'];
 
-	if ($_POST[$tarea_prioridad < 1 || $tarea_prioridad > 3){
-		echo "ERROR: Debe seleccionar un error para la prioridad\n";
+	if ($tarea_prioridad < 1 || $tarea_prioridad > 3){
+		echo "ERROR: Debe seleccionar un valor para la prioridad\n";
 	}else{
 		$nuevaTarea = crearTarea($tarea_titulo, validarTitulo(...), $tarea_prioridad);
 		if ($nuevaTarea !== []){
