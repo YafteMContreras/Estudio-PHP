@@ -1,5 +1,5 @@
-<!-- HTML -->
+<!-- Header -->
 <head>
-        <h1>Gestor de Tareas</h1>
+        <h1><?php echo APP_NAME ?></h1>
 </head>
 <body>
