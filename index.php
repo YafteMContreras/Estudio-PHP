@@ -38,5 +38,5 @@ $pendientes = array_values($pendientes);
 imprimeTareas($completadas, "Tareas completadas", textoPrioridad(...));
 imprimeTareas($pendientes, "Tareas pendientes", textoPrioridad(...));
 
-require_once __DIR__ .  '/includes/footer';
+require_once __DIR__ .  '/includes/footer.php';
 ?>
