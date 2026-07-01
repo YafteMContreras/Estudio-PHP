@@ -28,7 +28,7 @@ function textoPrioridad(int $prioridad) : string{
 }
 
 // Función que imprime tareas
-function imprimeTareas(array $array, string $texto, callable $textoPrioridad) : void {
+function imprimeTareas(array $array, string $texto) : void {
 ?>
         <h2><?php echo sprintf("%s: %d", $texto, count($array)) ?></h2>
         <table>
@@ -39,9 +39,9 @@ function imprimeTareas(array $array, string $texto, callable $textoPrioridad) : 
                 </tr>
                         <?php foreach ($array as $tarea):?>
                 <tr>
-                                <td><?php echo sprintf("%03d", $tarea['id']) ?></td>
-                                <td><?php echo sprintf("%-20s", $tarea['titulo']) ?></td>
-                                <td><?php echo sprintf("%-10s", $textoPrioridad($tarea['prioridad'])) ?></td>
+                                <td><?php echo sprintf("%03d", $tarea->id) ?></td>
+                                <td><?php echo sprintf("%-20s", $tarea->titulo) ?></td>
+                                <td><?php echo sprintf("%-10s", $tarea->textoPrioridad() ?></td>
                 </tr>
                         <?php endforeach; ?>
         </table>
