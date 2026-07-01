@@ -12,6 +12,10 @@ class Tarea{
 			1 => "Alta", 2 => "Media", 3 => "Baja",
 		};
 	}
+
+	public function esValido() : bool {
+		return preg_match('/^[\w]{3,}/',$this->titulo);
+	}
 }
 
 
